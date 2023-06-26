@@ -1,0 +1,7 @@
+dash==2.6.2
+numpy==1.23.4
+pandas==1.5.1
+plotly==5.11.0
+preprocess==2.0.0
+gunicorn
+dash-tools
