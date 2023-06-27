@@ -4,7 +4,6 @@ from dash import Dash, dash_table, dcc, html, Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
 
-import preprocess
 import polar
 
 app = Dash(__name__)
