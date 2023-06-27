@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-def generate_sunburst_chart(data):
+def generate_sunburst(data):
 
     # Create an empty dictionary to store the users for each action
     action_users = {}
@@ -60,4 +60,4 @@ def generate_sunburst_chart(data):
     fig = px.sunburst(pivot_table, path=['Action_autre','Action_creation_compte','Page_Info','Page_Mordu','Page_OHdio','Page_accueil_Info','Page_accueil_Mordu','Page_accueil_OHdio','Video_Info','Video_Mordu'], values='visit_page_num', color='visit_page_num', branchvalues='total')
 
     # # Show the plot
-    fig.show()
+    return fig
