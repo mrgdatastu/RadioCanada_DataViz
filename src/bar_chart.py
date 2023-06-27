@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-def create_clickable_bar_chart(data):
+def generate_bar_chart(data):
     #data = pd.read_csv("f:/RC1000-1.csv")
 
     filtered_data = data.dropna(subset=['referrer', 'simulated_subject'])
@@ -58,4 +58,4 @@ def create_clickable_bar_chart(data):
 
     scatter.on_click(update_point)
 
-    fig.show()
+    return fig
