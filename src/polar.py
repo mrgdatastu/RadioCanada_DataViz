@@ -3,10 +3,7 @@ import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
 
-def generate_polar(data):
- 
-    # Load the dataset
-    my_df = data.copy() #pd.read_csv('f:/RC-poly_donnees_simulees.csv')
+def generate_polar(my_df):
 
     keep = ['identifiant_visite', 'visit_page_num', 'visit_start_time_gmt', 'Account_Created_journey']
     my_df = my_df[keep]

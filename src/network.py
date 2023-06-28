@@ -1,10 +1,12 @@
 import pandas as pd
 import networkx as nx
 from pyvis.network import Network
-import webbrowser
+from IPython.display import display, HTML
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
 
-def create_network_graph(data):
-
+def generate_network(data):
     # Replace NaN values with "Unknown"
     data = data.fillna("Home")
 
@@ -34,18 +36,18 @@ def create_network_graph(data):
     # Add nodes with their attributes
     for node, node_type in G.nodes(data='node_type'):
         color = 'green' if node_type == 'account_creation' else 'lightblue'
-        nt.add_node(node, label=node, color=color)
+        nt.add_node(node, label=node, color=color, shape='dot')
 
     # Add edges with their attributes
     for u, v, edge_type in G.edges(data='edge_type'):
         color = 'green' if edge_type == 'account_creation' else 'gray'
-        nt.add_edge(u, v, color=color)
+        width = 4 if edge_type == 'account_creation' else 1
+        nt.add_edge(u, v, color=color, width=width)
 
     # Set options for the network visualization
     nt.set_options("""
     var options = {
     "nodes": {
-        "shape": "dot",
         "size": 20,
         "font": {
         "size": 12,
@@ -54,7 +56,6 @@ def create_network_graph(data):
         "borderWidth": 2
     },
     "edges": {
-        "width": 1,
         "font": {
         "size": 10,
         "color": "gray"
@@ -73,12 +74,51 @@ def create_network_graph(data):
     }
     """)
 
-    # # Show the network visualization
-    #nt.show('network.html')
-    return ('network.html')
+    # Add legend
+    legend_html = '''
+    <div class="legend" style="position: absolute; top: 10px; right: 10px; background-color: white; border: 1px solid #ccc; padding: 10px; font-family: Arial, sans-serif;">
+        <h6>Legend</h6>
+        <hr>
+        <div>
+            <svg height="15" width="15">
+                <circle cx="8" cy="8" r="6" fill="green" />
+            </svg>
+            Account Creation Node
+        </div>
+        <div>
+            <svg height="15" width="15">
+                <circle cx="8" cy="8" r="6" fill="lightblue" />
+            </svg>
+            Node
+        </div>
+        <div>
+            <svg height="10" width="100">
+                <line x1="0" y1="8" x2="20" y2="8" style="stroke:gray;stroke-width:1" />
+            </svg>
+            Node Link
+        </div>
+        <div>
+            <svg height="10" width="60">
+                <line x1="0" y1="8" x2="20" y2="8" style="stroke:green;stroke-width:1" />
+            </svg>
+            Link to Account Creation
+        </div>
+        <div>
+            <svg height="10" width="60">
+                <line x1="0" y1="8" x2="20" y2="8" style="stroke:green;stroke-width:4" />
+            </svg>
+            Multiple Connections
+        </div>
+    </div>
+    '''
 
-def open_html_file(file_path):
-    webbrowser.open(file_path)
+    # Save the network visualization as HTML
+    nt.save_graph('./net.html')
 
-html_file_path = 'network'
-open_html_file(html_file_path)
+    # Read the HTML file
+    with open('./net.html', 'r') as file:
+        content = file.read()
+
+    # Insert the legend HTML code into the content
+    content = content.replace('</body>', legend_html + '</body>')
+    return content
