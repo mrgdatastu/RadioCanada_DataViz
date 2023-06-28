@@ -7,7 +7,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 def generate_network(data):
-    # Replace NaN values with "Unknown"
+    # Replace NaN values with "Home"
     data = data.fillna("Home")
 
     # Extract information about visited pages
