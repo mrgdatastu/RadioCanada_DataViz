@@ -113,10 +113,10 @@ def generate_network(data):
     '''
 
     # Save the network visualization as HTML
-    nt.save_graph('./net.html')
+    nt.save_graph('net.html')
 
     # Read the HTML file
-    with open('./net.html', 'r') as file:
+    with open('net.html', 'r') as file:
         content = file.read()
 
     # Insert the legend HTML code into the content
