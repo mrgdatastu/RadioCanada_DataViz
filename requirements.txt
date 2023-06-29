@@ -3,3 +3,5 @@ numpy
 pandas
 plotly
 gunicorn
+networkx
+pyvis
