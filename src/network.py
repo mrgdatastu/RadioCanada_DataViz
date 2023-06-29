@@ -7,7 +7,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 def generate_network(data):
-    # Replace NaN values with "Unknown"
+    # Replace NaN values with "Home"
     data = data.fillna("Home")
 
     # Extract information about visited pages
@@ -79,17 +79,18 @@ def generate_network(data):
     <div class="legend" style="position: absolute; top: 10px; right: 10px; background-color: white; border: 1px solid #ccc; padding: 10px; font-family: Arial, sans-serif;">
         <h6>Legend</h6>
         <hr>
+        
+        <div>
+            <svg height="15" width="15">
+                <circle cx="8" cy="8" r="6" fill="lightblue" />
+            </svg>
+            Node section and action on the website
+        </div>
         <div>
             <svg height="15" width="15">
                 <circle cx="8" cy="8" r="6" fill="green" />
             </svg>
             Account Creation Node
-        </div>
-        <div>
-            <svg height="15" width="15">
-                <circle cx="8" cy="8" r="6" fill="lightblue" />
-            </svg>
-            Node
         </div>
         <div>
             <svg height="10" width="100">

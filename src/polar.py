@@ -57,7 +57,7 @@ def generate_polar(my_df):
             cmin=min(acc_creation_ratio.values),
             showscale=True,
             colorbar=dict(
-                title='Account Creation Ratio',
+                title='Number of Visits',
                 titleside='top',
                 tickmode='array',
                 tickvals=[min(acc_creation_ratio.values), max(acc_creation_ratio.values)],

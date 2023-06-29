@@ -11,17 +11,18 @@ def generate_bar_chart(data):
 
     page_counts = page_counts[~page_counts['simulated_subject'].isna()]
 
-    colors = ['#0d0887', '#46039f', '#7201a8', '#9c179e', '#bd3786', '#d8576b', '#ed7953', '#fb9f3a', '#fdca26', '#f0f921']
+    #colors = ['#0d0887', '#46039f', '#7201a8', '#9c179e', '#bd3786', '#d8576b', '#ed7953', '#fb9f3a', '#fdca26', '#f0f921']
+    colors = ['rgb(247,251,255)', 'rgb(222,235,247)', 'rgb(198,219,239)', 'rgb(158,202,225)', 'rgb(107,174,214)', 'rgb(66,146,198)', 'rgb(33,113,181)', 'rgb(8,81,156)', 'rgb(8,48,107)']
 
     fig = px.bar(page_counts, x='referrer', y='visit_count', color='simulated_subject',
                  color_discrete_sequence=colors, barmode='group')
 
     fig.update_layout(
-        xaxis_title='Referrer',
+        xaxis_title='Reference',
         yaxis_title='Visit Count',
-        title='Pages Visited in Referrer Column (Excluding NaN)',
+        title='Page visited based on reference sources and sections',
         showlegend=True,
-        legend_title='Simulated Subject'
+        legend_title='Sections'
     )
 
     fig.update_yaxes(type='log')
