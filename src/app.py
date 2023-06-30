@@ -3,6 +3,8 @@ import pandas as pd
 from dash import Dash, dash_table, dcc, html, Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
+import requests
+import csv
 
 import polar
 import bar_chart
@@ -13,7 +15,11 @@ app = Dash(__name__)
 server = app.server
 app.title = 'Radio Canada Data Visualization Project | INF8808'
 
+
+
 dataframe = pd.read_csv('./RC1000-1.csv')
+#dataframe = pd.read_csv('f:/RC-poly_donnees_simulees.csv')
+
 
 polar_fig = polar.generate_polar(dataframe)
 bar_fig = bar_chart.generate_bar_chart(dataframe)

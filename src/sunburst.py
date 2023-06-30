@@ -101,7 +101,7 @@ def generate_sunburst(data):
             len=0.5,
             yanchor='bottom',
             y=0.05,
-            tickformat='.0%',
+            #tickformat='.0%',
             tickvals=[i / 100 for i in range(1, 101)],
             ticktext=[f'{i}%' for i in range(1, 101)]
         )

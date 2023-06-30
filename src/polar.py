@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 def generate_polar(my_df):
-
+    
     keep = ['identifiant_visite', 'visit_page_num', 'visit_start_time_gmt', 'Account_Created_journey']
     my_df = my_df[keep]
     my_df = my_df[my_df['visit_page_num'] == 1]
@@ -59,15 +59,12 @@ def generate_polar(my_df):
             colorbar=dict(
                 title='Number of Visits',
                 titleside='top',
-                tickmode='array',
-                tickvals=[min(acc_creation_ratio.values), max(acc_creation_ratio.values)],
-                ticktext=['Min', 'Max'],
                 lenmode='fraction',
                 len=0.6,
                 xanchor='right',
-                x=1.5,
+                x=1.8,
                 yanchor='top',
-                y=1
+                y=0.8
             )
         ),
         hoverinfo='skip',
@@ -85,19 +82,21 @@ def generate_polar(my_df):
                 ticktext=['{}-{}'.format(i, (i + 1) % 24) for i in range(24)]
             ),
         ),
-        showlegend=True,  # Add legend
+        showlegend=True,
         legend=dict(
             title='Legend',
             itemsizing='constant',
-            orientation='h',  # Set the orientation to horizontal
+            orientation='v',
             traceorder='reversed',
             tracegroupgap=10,
             bordercolor='rgba(0,0,0,0)',
             borderwidth=0,
-            x=.85,  # Position the legend at the top right
-            y=1.1,  # Position the legend above the plot
-            itemclick='toggle',  # Allow toggling of the legend item
-            itemdoubleclick='toggleothers',  # Allow toggling of other legend items
+            x=1.05,
+            y=0.5,
+            xanchor='left',  # Align legends to the right
+            yanchor='middle',
+            itemclick='toggle',
+            itemdoubleclick='toggleothers',
         ),
         coloraxis=dict(
             colorbar=dict(
@@ -105,13 +104,29 @@ def generate_polar(my_df):
                 titleside='top',
                 lenmode='fraction',
                 len=0.6,
-                xanchor='left',
-                x=0.1,
+                xanchor='right',
+                x=1.1,
                 yanchor='top',
                 y=1
             )
+        ),
+        width=1000,
+        height=800,
+        autosize=False,
+        margin=dict(
+            l=250,
+            r=50,
+            t=50,
+            b=50
+        ),
+        template='plotly_white',
+        xaxis=dict(
+            showgrid=False,
+            zeroline=False
+        ),
+        yaxis=dict(
+            showgrid=False,
+            zeroline=False
         )
     )
-
-    # Display the chart
     return fig
