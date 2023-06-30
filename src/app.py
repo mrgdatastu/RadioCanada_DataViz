@@ -14,7 +14,11 @@ server = app.server
 app.title = 'Radio Canada Data Visualization Project | INF8808'
 
 #Load Dataset
-dataframe = pd.read_csv('./RC1000-1.csv')
+#dataframe = pd.read_csv('./RC1000-1.csv')
+url='https://drive.google.com/file/d/1nBE3ZpJxqr4esh6sgnTEF4PjAEbpIETn/view?usp=drive_link'
+url='https://drive.google.com/uc?id=' + url.split('/')[-2]
+dataframe = pd.read_csv(url)
+
 
 polar_fig = polar.generate_polar(dataframe)
 bar_fig = bar_chart.generate_bar_chart(dataframe)
