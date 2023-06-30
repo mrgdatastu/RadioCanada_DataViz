@@ -28,6 +28,9 @@ def generate_sunburst(data):
     total_journey = level_counts['Account_Created_journey'].sum()
     level_counts['Account_Created_percentage'] = (level_counts['Account_Created_journey'] / total_journey) * 100
 
+    # Add the 'simulated_detailed_event' column to level_counts
+    level_counts['simulated_detailed_event'] = level_counts['level1']
+
     # Generate the sunburst chart
     fig = px.sunburst(
         level_counts,
@@ -45,10 +48,10 @@ def generate_sunburst(data):
 
     # Add custom data to be displayed in the hover template
     hover_data = level_counts['Account_Created_percentage'].tolist()
+    hover_data = [0 if pd.isnull(x) else x for x in hover_data]  # Replace NaN values with 0
 
     # Update the hover template and hover data
-    fig.update_traces(hovertemplate=hover_template)
-    fig.update_traces(customdata=hover_data)
+    fig.update_traces(hovertemplate=hover_template, customdata=hover_data)
 
     # Remove null values from figure data
     figure_data = fig['data'][0]
@@ -97,13 +100,41 @@ def generate_sunburst(data):
             'yanchor': 'top'
         },
         coloraxis_colorbar=dict(
-            title='Account Creation Percentatge 0 - 100',
+            title='Account Creation Percentage (0 - 100)',
             len=0.5,
-            yanchor='bottom',
-            y=0.05,
-            #tickformat='.0%',
             tickvals=[i / 100 for i in range(1, 101)],
-            ticktext=[f'{i}%' for i in range(1, 101)]
+            ticktext=[f'{i}%' for i in range(1, 101)],
+            titleside='top',
+            lenmode='fraction',
+            xanchor='right',
+            x=0,
+            yanchor='top',
+            y=1
+        ),
+        width=1000,
+        height=800,
+        autosize=False,
+        margin=dict(
+            l=300,
+            r=0,
+            t=50,
+            b=50
+        ),
+        template='plotly_white',
+        xaxis=dict(
+            showgrid=False,
+            zeroline=False
+        ),
+        yaxis=dict(
+            showgrid=False,
+            zeroline=False
+        ),
+        legend=dict(
+            orientation='v',
+            yanchor='top',
+            y=1,
+            xanchor='right',
+            x=0.99
         )
     )
 
