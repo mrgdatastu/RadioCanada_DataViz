@@ -16,7 +16,7 @@ app.title = 'Radio Canada Data Visualization Project | INF8808'
 #Load Dataset
 #dataframe = pd.read_csv('./RC1000-1.csv')
 url = 'http://kv4u.ir/RC-poly_donnees_simulees.csv'
-dataframe = pd.read_csv(url)
+dataframe = pd.read_csv(url,on_bad_lines='skip')
 
 
 polar_fig = polar.generate_polar(dataframe)
