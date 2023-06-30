@@ -14,8 +14,10 @@ server = app.server
 app.title = 'Radio Canada Data Visualization Project | INF8808'
 
 #dataframe = pd.read_csv('./RC1000-1.csv')
-
-url = "https://drive.google.com/file/d/14vdInfQ2GH-q_Lry0IqxeErBH6_BP35r/view?usp=drive_link"
+#Dataset Sample 1000 record
+#url = "https://drive.google.com/file/d/14vdInfQ2GH-q_Lry0IqxeErBH6_BP35r/view?usp=drive_link"
+#Dataset full 
+url = "https://drive.google.com/file/d/1nBE3ZpJxqr4esh6sgnTEF4PjAEbpIETn/view?usp=drive_link"
 s = requests.get(url).content
 dataframe = pd.read_csv(s)
 
