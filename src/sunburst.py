@@ -97,7 +97,7 @@ def generate_sunburst(data):
             'yanchor': 'top'
         },
         coloraxis_colorbar=dict(
-            title='Account Creation Percentage',
+            title='Account Creation Percentatge 0 - 100',
             len=0.5,
             yanchor='bottom',
             y=0.05,

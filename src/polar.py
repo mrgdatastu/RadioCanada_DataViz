@@ -31,7 +31,7 @@ def generate_polar(my_df):
         marker_colorscale=color_scale, 
         opacity=0.8,
         text=acc_creation_ratio.values,
-        hovertemplate='Visits from %{theta}: %{r}<br> Account Creation: %{text}<extra></extra>',
+        hovertemplate='Visits from %{theta}: %{r}<extra></extra>',
         name='Visit Time'
     ))
 
