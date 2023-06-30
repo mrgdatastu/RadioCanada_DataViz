@@ -5,3 +5,4 @@ plotly
 gunicorn
 networkx
 pyvis
+webcolors
