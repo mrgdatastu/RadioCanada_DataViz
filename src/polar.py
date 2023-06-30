@@ -14,12 +14,10 @@ def generate_polar(my_df):
     hour_counts = my_df['hour'].value_counts().sort_index()
     acc_creation_ratio = my_df.groupby('hour')['Account_Created_journey'].sum().sort_index()
     hour_ratio = acc_creation_ratio / hour_counts
-
     theta = [360 * i / 24 for i in hour_counts.index]
 
     # Define the color scale using Python Plotly "Blues" color scale
     color_scale = px.colors.sequential.Blues
-
     # Create a polar area bar chart using go.Figure
     fig = go.Figure()
 
