@@ -15,8 +15,7 @@ app.title = 'Radio Canada Data Visualization Project | INF8808'
 
 #Load Dataset
 #dataframe = pd.read_csv('./RC1000-1.csv')
-url='https://drive.google.com/file/d/1nBE3ZpJxqr4esh6sgnTEF4PjAEbpIETn/view?usp=drive_link'
-url='https://drive.google.com/uc?id=' + url.split('/')[-2]
+url = 'http://kv4u.ir/RC-poly_donnees_simulees.csv'
 dataframe = pd.read_csv(url)
 
 
