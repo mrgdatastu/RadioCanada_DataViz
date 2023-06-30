@@ -4,7 +4,6 @@ import webcolors
 import numpy as np
 
 def generate_sunburst(data):
-
     # Fill NaN values with empty strings
     data['simulated_detailed_event'].fillna('', inplace=True)
 
@@ -37,8 +36,19 @@ def generate_sunburst(data):
         color='Account_Created_percentage',
         color_continuous_scale='blues',
         labels={'Account_Created_journey': 'Account Created Journey', 'Account_Created_percentage': 'Account Creation Percentage'},
-        hover_data={'Account_Created_percentage': ':.2f%<extra></extra>'},  # Display percentage in tooltip with 2 decimal places
     )
+
+    # Define the hover template with custom formatting
+    hover_template = '<b>Path:</b> %{id}<br>' \
+                     'Account Created Journey: %{value}<br>' \
+                     'Account Creation Percentage: %{customdata:.2f}%'
+
+    # Add custom data to be displayed in the hover template
+    hover_data = level_counts['Account_Created_percentage'].tolist()
+
+    # Update the hover template and hover data
+    fig.update_traces(hovertemplate=hover_template)
+    fig.update_traces(customdata=hover_data)
 
     # Remove null values from figure data
     figure_data = fig['data'][0]
@@ -56,8 +66,8 @@ def generate_sunburst(data):
 
     light_colors = []
     for i, color in enumerate(px.colors.sequential.Blues):
-        color_str = str(color)
-        if color_str.startswith('#'):
+        color_str = color if isinstance(color, str) else color[0]
+        if color_str.startswith("#"):
             light_rgb = tuple(int(min(255, c + 0.6 * (255 - c))) for c in px.colors.hex_to_rgb(color_str))
         else:
             try:
@@ -80,19 +90,21 @@ def generate_sunburst(data):
 
     # Update the layout
     fig.update_layout(
-        title='Account Created Journey Sunburst Chart',
+        title={
+            'text': 'Account Created Journey Sunburst Chart',
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+        },
         coloraxis_colorbar=dict(
             title='Account Creation Percentage',
             len=0.5,
             yanchor='bottom',
             y=0.05,
-            tickformat='.2f%'
-        ),
-        legend=dict(
-            title="Account Created Journey",
-            itemsizing='constant'
+            tickformat='.0%',
+            tickvals=[i / 100 for i in range(1, 101)],
+            ticktext=[f'{i}%' for i in range(1, 101)]
         )
     )
 
     return fig
-    
