@@ -102,8 +102,8 @@ def generate_sunburst(data):
         coloraxis_colorbar=dict(
             title='Account Creation Percentage (0 - 100)',
             len=0.5,
-            tickvals=[i / 100 for i in range(1, 101)],
-            ticktext=[f'{i}%' for i in range(1, 101)],
+            tickvals=[min(enumerate(figure_data.marker.colors)), max(enumerate(figure_data.marker.colors))],
+            ticktext=['Min', 'Max'],
             titleside='top',
             lenmode='fraction',
             xanchor='right',
@@ -137,5 +137,7 @@ def generate_sunburst(data):
             x=0.99
         )
     )
+
+
 
     return fig

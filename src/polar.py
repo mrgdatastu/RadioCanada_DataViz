@@ -91,7 +91,7 @@ def generate_polar(my_df):
             tracegroupgap=10,
             bordercolor='rgba(0,0,0,0)',
             borderwidth=0,
-            x=1.8,
+            x=1.5,
             y=0.85,
             xanchor='left',  # Align legends to the right
             yanchor='middle',

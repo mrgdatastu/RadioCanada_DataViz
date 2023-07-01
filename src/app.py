@@ -15,7 +15,7 @@ app = Dash(__name__)
 server = app.server
 app.title = 'Radio Canada Data Visualization Project | INF8808'
 
-dataframe = pd.read_csv('./RC50000.csv')
+dataframe = pd.read_csv('f:/RC50000.csv')
 #dataframe = pd.read_csv('f:/RC1000-1.csv')
 
 polar_fig = polar.generate_polar(dataframe)
