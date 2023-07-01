@@ -15,7 +15,7 @@ app = Dash(__name__)
 server = app.server
 app.title = 'Radio Canada Data Visualization Project | INF8808'
 
-dataframe = pd.read_csv('./RC50000.csv')
+dataframe = pd.read_csv('f:/RC50000.csv')
 #dataframe = pd.read_csv('./RC1000-1.csv')
 
 polar_fig = polar.generate_polar(dataframe)
@@ -55,7 +55,7 @@ app.layout = html.Div(
         html.Iframe(
             srcDoc=network_fig,
             width='100%',
-            height='800px',
+            height='700px',
             style={'border': 'none'}
         ),
         html.H3("The network diagram here provides a concise representation of connections between different sections of the website. Nodes represent individual sections, while lines depict the paths between them. This diagram is useful for understanding complex systems, analyzing social networks, and visualizing information flow. In the context of the Canadian Radio website, the network diagram showcases interconnections among sections and visitation rates for each route. The chart helps identify popular paths and interactions between sections, especially in relation to account creation.", style={'text-align': 'center'}),
