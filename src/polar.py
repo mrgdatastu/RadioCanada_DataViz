@@ -56,6 +56,8 @@ def generate_polar(my_df):
             showscale=True,
             colorbar=dict(
                 title='Number of Visits',
+                tickvals=[min(acc_creation_ratio.values), max(acc_creation_ratio.values)],
+                ticktext=['Min', 'Max'],
                 titleside='top',
                 lenmode='fraction',
                 len=0.6,
@@ -89,8 +91,8 @@ def generate_polar(my_df):
             tracegroupgap=10,
             bordercolor='rgba(0,0,0,0)',
             borderwidth=0,
-            x=1.05,
-            y=0.5,
+            x=1.8,
+            y=0.85,
             xanchor='left',  # Align legends to the right
             yanchor='middle',
             itemclick='toggle',
