@@ -109,7 +109,7 @@ def generate_sunburst(data):
             xanchor='right',
             x=0,
             yanchor='top',
-            y=1
+            y=.8
         ),
         width=1000,
         height=800,
@@ -137,7 +137,4 @@ def generate_sunburst(data):
             x=0.99
         )
     )
-
-
-
     return fig
