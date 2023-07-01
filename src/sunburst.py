@@ -111,8 +111,8 @@ def generate_sunburst(data):
             yanchor='top',
             y=.8
         ),
-        width=1000,
-        height=800,
+        width=900,
+        height=700,
         autosize=False,
         margin=dict(
             l=300,
@@ -137,4 +137,5 @@ def generate_sunburst(data):
             x=0.99
         )
     )
+
     return fig
